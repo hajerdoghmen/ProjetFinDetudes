@@ -16,7 +16,7 @@ namespace ProjetFinDetudes.Repository
         {
             Article article = new Article();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             // lena nbadl ken database hedhi nel9aha win na3ml connexion  fel sql : lena na3tih route de connexion lel sql
             // La raison de l' usinginstruction est de s'assurer que l'objet est supprimé dès qu'il est hors de 
             //portée, et il ne nécessite pas de code explicite pour s'assurer que cela se produit.
@@ -37,7 +37,7 @@ namespace ProjetFinDetudes.Repository
                 // @articleId hedhi ism paramétre fel sql serveur ama hedhi articleId paramétre eli te5ou fct mte3na fel repository
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
-                // .ExecuteReader 5atr bech yrja3 liste ama fama eli yraja3 élemet we7d w fama eli bech mayraja3 chay 
+                // .ExecuteReader (5atr bech yrja3 liste wala yraja3 élemet we7d) w fama ExecuteNnnQuery( bech mayraja3 chay) 
                 {
                     if (rdr.Read())
                     //rdr.Read heya ei fasrheli oussama kima dictionnaire
