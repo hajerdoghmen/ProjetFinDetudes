@@ -15,11 +15,12 @@ namespace ProjetFinDetudes.Repository
         {
             List<ArticleImage> pictures = new List<ArticleImage>();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("PS_GetPictureByArticleId", conn);
+                SqlCommand cmd = new SqlCommand("PS_Ge" +
+                    "tPictureByArticleId", conn);
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@articleId", articleId));

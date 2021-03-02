@@ -15,5 +15,6 @@ namespace ProjetFinDetudes.Model
         public DateTime EstimatedDeliveryDate { get; set; }
         public List<Review> Reviews { get; set; }
         public List<ArticleImage> ArticleImages { get; set; }
+  
     }
 }
