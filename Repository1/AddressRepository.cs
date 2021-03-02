@@ -32,9 +32,6 @@ namespace ProjetFinDetudes.Repository
                        // addressBilling.Country = (Country)rdr["Country"];
                         addressBilling.IsDefault = (bool)rdr["IsDefault"];
                         addressesBilling.Add(addressBilling);
-
-
-
                     }
                 }
             }

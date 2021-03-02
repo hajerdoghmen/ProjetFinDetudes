@@ -10,8 +10,6 @@ namespace ProjetFinDetudes.Repository
 {
     public class UserRepository
     {
-      
-
         public User GetUsersById (int UserId)
         {
             User user = new User();

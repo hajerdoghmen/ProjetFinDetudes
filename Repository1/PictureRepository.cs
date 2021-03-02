@@ -19,8 +19,7 @@ namespace ProjetFinDetudes.Repository
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("PS_Ge" +
-                    "tPictureByArticleId", conn);
+                SqlCommand cmd = new SqlCommand("PS_GetPictureByArticleId", conn);
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@articleId", articleId));
