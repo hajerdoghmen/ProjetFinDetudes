@@ -26,12 +26,12 @@ namespace ProjetFinDetudes.Repository
                         user.FirstName = (string)rdr["FirstName"];
                         user.LastName =(string)rdr["LastName"];
                         user.DateOfBirth = (DateTime)rdr["DateOfBirth"];
-                        user.Sex = (Sex) Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
-                        user.UserId = UserId;
+                        user.Sex = (Sex)Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
                         //int i = 5;
                         //double d = 4.6;
 
-                        //d = i; // cast implicit (specifique on lui met un generique)
+                        //d = i; // cast implicit (specifique on lui met un generique)user.Sex = (Sex) Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
+                        user.UserId = UserId;
                         //i = (int)d;
 
                         //Animal a = new Animal();

@@ -29,9 +29,10 @@ namespace ProjetFinDetudes.Repository
                         addressBilling.Street=(string)rdr["Street"];
                         addressBilling.ZIPcode= (int)rdr["ZipCode"];
                         addressBilling.City = (string)rdr["City"];
-                       // addressBilling.Country = (Country)rdr["Country"];
+                        addressBilling.Country = (Country)Enum.Parse(typeof(Country), (string)rdr["Country"]);
                         addressBilling.IsDefault = (bool)rdr["IsDefault"];
                         addressesBilling.Add(addressBilling);
+                    
                     }
                 }
             }
@@ -56,8 +57,8 @@ namespace ProjetFinDetudes.Repository
                         addressShipping.Number = (int)rdr["Number"];
                         addressShipping.Street = (string)rdr["Street"];
                         addressShipping.ZIPcode = (int)rdr["ZipCode"];
-                        addressShipping.City = (string)rdr["City"]; 
-                       // addressShipping.Country = (Country)rdr["Country"];
+                        addressShipping.City = (string)rdr["City"];
+                        addressShipping.Country = (Country)Enum.Parse(typeof(Country), (string)rdr["Country"]);
                         addressShipping.IsDefault = (bool)rdr["IsDefault"];
                         addressesShipping.Add(addressShipping);
 
