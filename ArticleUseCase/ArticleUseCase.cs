@@ -12,12 +12,11 @@ namespace ProjetFinDetudes.UseCase
     {
         public Article GetArticleById(int articleId)
         {
-            ArticleRepository articleDemande = new ArticleRepository();
-            Article article = articleDemande.GetArticleById(articleId);
+            ArticleRepository articleRepository = new ArticleRepository();
+            Article article = articleRepository.GetArticleById(articleId);
 
-            PictureRepository picturesArticle = new PictureRepository();
-            List<ArticleImage> images = picturesArticle.GetPictureById(articleId);
-            article.ArticleImages = images;
+            PictureRepository pictureRepository = new PictureRepository();
+            article.ArticleImages = pictureRepository.GetPictureById(articleId);
 
             ReviewRepository reviewArticle = new ReviewRepository();
             article.Reviews = reviewArticle.GetReviewById(articleId);

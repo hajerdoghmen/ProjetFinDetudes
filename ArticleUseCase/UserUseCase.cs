@@ -18,19 +18,14 @@ namespace ProjetFinEtudes.UseCase
             User user = userRepository.GetUsersById(userId);
 
             AddressRepository addressRepository = new AddressRepository();
-            List<Address> billingAdress = addressRepository.GetBillingAdressByUserId(userId);
-            user.BillingAdress = billingAdress;
+            user.BillingAdress = addressRepository.GetBillingAdressByUserId(userId);
+            user.ShippingAdress = addressRepository.GetShippingAdressByUserId(userId);
 
-
-            AddressRepository addressRepository2 = new AddressRepository();
-            List<Address> shippingAdress = addressRepository2.GetShippingAdressByUserId(userId);
-            user.ShippingAdress = shippingAdress;
-
-
+            //BankCardRepository bankCardRepository = new BankCardRepository();
+            //List<BankCard> bankCards = bankCardRepository.GetBankCardByUserId(userId);
+            //user.BankCard = bankCards;
             BankCardRepository bankCardRepository = new BankCardRepository();
-            List<BankCard> bankCards = bankCardRepository.GetBankCardByUserId(userId);
-            user.BankCard = bankCards;
-
+            user.BankCard = bankCardRepository.GetBankCardByUserId(userId);
 
             return user;
         }
