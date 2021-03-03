@@ -26,7 +26,7 @@ namespace ProjetFinDetudes.Repository
                         user.FirstName = (string)rdr["FirstName"];
                         user.LastName =(string)rdr["LastName"];
                         user.DateOfBirth = (DateTime)rdr["DateOfBirth"];
-                        
+                        user.Sex = (Sex)Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
                         //int i = 5;
                         //double d = 4.6;
 
