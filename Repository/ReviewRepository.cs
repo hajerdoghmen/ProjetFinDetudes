@@ -1,4 +1,5 @@
-﻿using ProjetFinDetudes.Model;
+﻿
+using PFE.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetFinDetudes.Repository
+namespace PFE.Repository
 {
     public class ReviewRepository
     {
@@ -16,7 +17,7 @@ namespace ProjetFinDetudes.Repository
         {
             List<Review> reviews = new List<Review>();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             {
                 conn.Open();
 
@@ -30,9 +31,9 @@ namespace ProjetFinDetudes.Repository
                     {
                         Review review = new Review();
                         review.Score = (int)rdr["Score"];
-                        review.Comments= (string)rdr["Comments"];
-                        review.RewiewDate= (DateTime)rdr["RewiewDate"];
-
+                        review.ReviewId = (int)rdr["ReviewId"];
+                        review.Comments = (string)rdr["Comments"];
+                        review.ReviewDate = (DateTime)rdr["ReviewDate"];
                         reviews.Add(review);
                     }
                 }

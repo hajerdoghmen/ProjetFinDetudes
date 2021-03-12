@@ -3,3 +3,13 @@
 ################################################################################
 
 /.vs
+/Domain/obj
+/Domain/bin/Debug/netstandard2.0
+/PFE/.vs/PFE
+/PFE/bin/Debug/netcoreapp3.1
+/PFE/obj
+/PFE/PFE.csproj.user
+/Repository/bin/Debug/netstandard2.0
+/Repository/obj
+/UseCase/bin/Debug/netstandard2.0
+/UseCase/obj

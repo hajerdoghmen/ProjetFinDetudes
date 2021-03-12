@@ -1,4 +1,5 @@
-﻿using ProjetFinDetudes.Model;
+﻿
+using PFE.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,15 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetFinDetudes.Repository
+namespace PFE.Repository
 {
-    public class PictureRepository
+    public class PictureRepository : IPictureRepository
     {
         public List<ArticleImage> GetPictureById(int articleId)
         {
             List<ArticleImage> pictures = new List<ArticleImage>();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             {
                 conn.Open();
 
@@ -28,8 +29,9 @@ namespace ProjetFinDetudes.Repository
                     while (rdr.Read())
                     {
                         ArticleImage picture = new ArticleImage();
+                        picture.ArticleImageId = (int)rdr["PictureId"];
                         picture.Url = (string)rdr["Picture"];
-                       
+
 
                         pictures.Add(picture);
                     }
