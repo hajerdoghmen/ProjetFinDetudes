@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PFE.Repository;
+using PFE.UseCase;
+using Repository;
 
 namespace PFE
 {
@@ -25,6 +28,20 @@ namespace PFE
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // ena zedt star hedha 
+            services.AddTransient<IPictureRepository, PictureHttpRepository>();
+            //kan tel9a constructeur bta3 usecase wala controller ye5ou param var de type IPictureRepository
+            //esna3 objet PictureRepository wl variable param bta3 constructeur twali tpointi alih
+            services.AddTransient<IArticleRepository, ArticleRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IBankCardRepository, BankCardRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+
+            services.AddTransient<IArticleUseCase, ArticleUseCase>();
+            services.AddTransient<IUserUseCase, UserUseCase>();
+
             services.AddControllers();
         }
 

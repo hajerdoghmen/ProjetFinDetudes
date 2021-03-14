@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PFE.Repository
 {
-    public class ReviewRepository
+    public class ReviewRepository : IReviewRepository
     {
         public List<Review> GetReviewById(int articleId)
         {

@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace PFE.Repository
 {
-    public class AddressRepository
+    public class AddressRepository : IAddressRepository
     {
         public List <Address>  GetBillingAdressByUserId (int userId)
         {

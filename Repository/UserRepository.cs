@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace PFE.Repository
 {
-    public class UserRepository
+    public class UserRepository :IUserRepository
     {
         public User GetUsersById (int UserId)
         {

@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PFE.Repository
 {
-    public class ArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
         public Article GetArticleById(int articleId)
         {
@@ -55,7 +56,7 @@ namespace PFE.Repository
                         //int ii = rdr == null ? 1 : 2;
                         //article.ArticleCategory = (ArticleCategory)rdr["CategoryName"];
                         // n7ot type mte3ou string 5atr lel c# yetretihom lkol koma objet
-                        article.ArticleCategory =(ArticleCategory) rdr["ArticleCategoryId"]; // probléme cast enum
+                        article.ArticleCategory = (ArticleCategory)rdr["ArticleCategoryId"]; // probléme cast enum
                         article.Name = (string)rdr["Name"];
                         article.Price = (double)rdr["Price"];
                         int dayToDeliver = (int)rdr["DeliveryEstimated"];
@@ -78,6 +79,7 @@ namespace PFE.Repository
             // boucle while kima boucle if w for w forech heya eli tecotroli l'exécution de la progamme 
             // while ki neda ma3rch bel dhabt nbre d'exécution
         }
+
     }
 
 }
