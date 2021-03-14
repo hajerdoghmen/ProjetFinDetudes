@@ -1,4 +1,6 @@
-﻿using ProjetFinDetudes.Model;
+﻿
+using PFE.Domain;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,15 +10,15 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetFinDetudes.Repository
+namespace PFE.Repository
 {
-    public class ArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
         public Article GetArticleById(int articleId)
         {
-           Article article = new Article();
+            Article article = new Article();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             // lena nbadl ken database hedhi nel9aha win na3ml connexion  fel sql : lena na3tih route de connexion lel sql
             // La raison de l' usinginstruction est de s'assurer que l'objet est supprimé dès qu'il est hors de 
             //portée, et il ne nécessite pas de code explicite pour s'assurer que cela se produit.
@@ -37,21 +39,33 @@ namespace ProjetFinDetudes.Repository
                 // @articleId hedhi ism paramétre fel sql serveur ama hedhi articleId paramétre eli te5ou fct mte3na fel repository
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
-                // .ExecuteReader 5atr bech yrja3 liste ama fama eli yraja3 élemet we7d w fama eli bech mayraja3 chay 
+                // .ExecuteReader (5atr bech yrja3 liste wala yraja3 élemet we7d) w fama ExecuteNnnQuery( bech mayraja3 chay) 
                 {
                     if (rdr.Read())
                     //rdr.Read heya ei fasrheli oussama kima dictionnaire
                     {
-                        article.ArticleCategory = (ArticleCategory)rdr["CategoryName"];
+                        //int i = 0;
+                        //if (rdr == null)
+                        //{
+                        //    i = 1;
+                        //}
+                        //else
+                        //{
+                        //    i = 2;
+                        //}
+                        //int ii = rdr == null ? 1 : 2;
+                        //article.ArticleCategory = (ArticleCategory)rdr["CategoryName"];
                         // n7ot type mte3ou string 5atr lel c# yetretihom lkol koma objet
+                        article.ArticleCategory = (ArticleCategory)rdr["ArticleCategoryId"]; // probléme cast enum
                         article.Name = (string)rdr["Name"];
                         article.Price = (double)rdr["Price"];
                         int dayToDeliver = (int)rdr["DeliveryEstimated"];
                         article.EstimatedDeliveryDate = DateTime.Now.AddDays(dayToDeliver);
                     }
-                    
+
                 }
             }
+
             return article;
 
             //int i = 0;
@@ -65,6 +79,7 @@ namespace ProjetFinDetudes.Repository
             // boucle while kima boucle if w for w forech heya eli tecotroli l'exécution de la progamme 
             // while ki neda ma3rch bel dhabt nbre d'exécution
         }
+
     }
 
 }
