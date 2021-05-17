@@ -38,9 +38,11 @@ namespace PFE
             services.AddTransient<IBankCardRepository, BankCardRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IDiscountRepository, DiscountRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             services.AddTransient<IArticleUseCase, ArticleUseCase>();
             services.AddTransient<IUserUseCase, UserUseCase>();
+            services.AddTransient<IOrderUseCase, OrderUseCase>();
 
             services.AddControllers();
         }
