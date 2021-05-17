@@ -27,12 +27,12 @@ namespace PFE.Repository
                     {
                         Address addressBilling = new Address();
 
-                        addressBilling.Number = (int)rdr["Number"];
+                        addressBilling.Number = (int?)rdr["Number"];
                         addressBilling.Street=(string)rdr["Street"];
                         addressBilling.ZIPcode= (int)rdr["ZipCode"];
                         addressBilling.City = (string)rdr["City"];
                         addressBilling.Country = (Country)Enum.Parse(typeof(Country), (string)rdr["Country"]);
-                        addressBilling.IsDefault = (bool)rdr["IsDefault"];
+                        addressBilling.IsDefault = (bool?)rdr["IsDefault"];
                         addressesBilling.Add(addressBilling);
                     
                     }
@@ -56,7 +56,7 @@ namespace PFE.Repository
                     {
                         Address addressShipping = new Address();
 
-                        addressShipping.Number = (int)rdr["Number"];
+                        addressShipping.Number = (int?)rdr["Number"];
                         addressShipping.Street = (string)rdr["Street"];
                         addressShipping.ZIPcode = (int)rdr["ZipCode"];
                         addressShipping.City = (string)rdr["City"];
