@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Repository.DAL
 {
-   public  class CreditCardDAL
+    public class CreditCardDAL
     {
         public int CreditCardId { get; set; }
         public string CardNumber { get; set; }
@@ -14,14 +14,14 @@ namespace Repository.DAL
         public int SecurityCode { get; set; }
         public BankCard ToDoamin()
         {
-            var result = new BankCard();
-            result.BankCaedId = CreditCardId;
-            result.CardNumber = CardNumber;
-            result.ExpirationDate = ExpirationDate;
-            result.Name = Name;
-            result.SecurityCode = SecurityCode;
-            return result;
-            
+            return new BankCard
+            {
+                CreditCardId = CreditCardId,
+                CardNumber = CardNumber,
+                ExpirationDate = ExpirationDate,
+                Name = Name,
+                SecurityCode = SecurityCode
+            };
         }
     }
 }

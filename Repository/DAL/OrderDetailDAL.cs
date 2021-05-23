@@ -102,7 +102,7 @@ namespace PFE.Repository.DAL
             {
                 result.CreditCard = new BankCard()
                 {
-                    BankCaedId = firstOrderDetail.CreditCardId.Value,
+                    CreditCardId = firstOrderDetail.CreditCardId.Value,
                     CardNumber = firstOrderDetail.CreditCardNumbr,
                     ExpirationDate = firstOrderDetail.ExpirtionDate,
                     Name = firstOrderDetail.Label,

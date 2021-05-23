@@ -13,18 +13,20 @@ namespace PFE.Repository.DAL
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Sex { get; set; }
-    
-    public User ToDomain( )
-    {
-        var result = new User();
-        result.UserId = UserId;
-        result.FirstName = FirstName;
-        result.LastName = LastName;
-        result.DateOfBirth =DateOfBirth;
-        result.Sex = (Sex)Enum.Parse(typeof(Sex), Sex);
-           return result;
+
+        public User ToDomain()
+        {
+            return new User
+            {
+                UserId = UserId,
+                FirstName = FirstName,
+                LastName = LastName,
+                DateOfBirth = DateOfBirth,
+                Sex = (Sex)Enum.Parse(typeof(Sex), Sex)
+            };
+
+        }
     }
-}
 }
 
 

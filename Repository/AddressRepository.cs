@@ -1,10 +1,13 @@
 ﻿
 using PFE.Domain;
+using PFE.Repository.DAL;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace PFE.Repository
@@ -13,7 +16,7 @@ namespace PFE.Repository
     {
         public List <Address>  GetBillingAdressByUserId (int userId)
         {
-            List<Address> addressesBilling = new List<Address>();
+            var addressesBilling = new List<AddressDAL>();
             
             using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
             {
@@ -25,23 +28,24 @@ namespace PFE.Repository
                 { 
                     while (rdr.Read())
                     {
-                        Address addressBilling = new Address();
-
-                        addressBilling.Number = (int?)rdr["Number"];
+                        var addressBilling = new AddressDAL();
+                        addressBilling.AddressId = (int)rdr["BillingAddressId"];
+                        addressBilling.Number = (int)rdr["Number"];
                         addressBilling.Street=(string)rdr["Street"];
-                        addressBilling.ZIPcode= (int)rdr["ZipCode"];
+                        addressBilling.ZipCode= (int)rdr["ZipCode"];
                         addressBilling.City = (string)rdr["City"];
-                        addressBilling.Country = (Country)Enum.Parse(typeof(Country), (string)rdr["Country"]);
-                        addressBilling.IsDefault = (bool?)rdr["IsDefault"];
+                        addressBilling.Country =(string)rdr["Country"];
+                        addressBilling.IsDefault = (bool)rdr["IsDefault"];
                         addressesBilling.Add(addressBilling);
                     }
                 }
             }
-            return addressesBilling;
+             List<Address> userBillingAddress = addressesBilling.Select(addressBilling => addressBilling.ToDomain()).ToList();
+            return userBillingAddress;
         }
         public List<Address> GetShippingAdressByUserId(int userId)
         {
-            List<Address> addressesShipping = new List<Address>();
+            var addressesShipping = new List<AddressDAL>();
 
             using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
             {
@@ -53,20 +57,21 @@ namespace PFE.Repository
                 {
                     while (rdr.Read())
                     {
-                        Address addressShipping = new Address();
-
-                        addressShipping.Number = (int?)rdr["Number"];
+                        var addressShipping = new AddressDAL();
+                        addressShipping.AddressId = (int)rdr["ShippingAddressId"];
+                        addressShipping.Number = (int)rdr["Number"];
                         addressShipping.Street = (string)rdr["Street"];
-                        addressShipping.ZIPcode = (int)rdr["ZipCode"];
+                        addressShipping.ZipCode = (int)rdr["ZipCode"];
                         addressShipping.City = (string)rdr["City"];
-                        addressShipping.Country = (Country)Enum.Parse(typeof(Country), (string)rdr["Country"]);
+                        addressShipping.Country = (string)rdr["Country"];
                         addressShipping.IsDefault = (bool)rdr["IsDefault"];
                         addressesShipping.Add(addressShipping);
 
                     }
                 }
             }
-            return addressesShipping;
+            List<Address> userAddressShipping = addressesShipping.Select(addressShipping => addressShipping.ToDomain()).ToList();
+            return userAddressShipping;
         }
     }
 }
