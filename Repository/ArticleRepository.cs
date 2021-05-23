@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using PFE.Repository.DAL;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace PFE.Repository
     {
         public Article GetArticleById(int articleId)
         {
-            Article article = new Article();
+            var articleDal = new ArticleDAL();
 
             using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             // lena nbadl ken database hedhi nel9aha win na3ml connexion  fel sql : lena na3tih route de connexion lel sql
@@ -44,40 +45,18 @@ namespace PFE.Repository
                     if (rdr.Read())
                     //rdr.Read heya ei fasrheli oussama kima dictionnaire
                     {
-                        //int i = 0;
-                        //if (rdr == null)
-                        //{
-                        //    i = 1;
-                        //}
-                        //else
-                        //{
-                        //    i = 2;
-                        //}
-                        //int ii = rdr == null ? 1 : 2;
-                        //article.ArticleCategory = (ArticleCategory)rdr["CategoryName"];
-                        // n7ot type mte3ou string 5atr lel c# yetretihom lkol koma objet
-                        article.ArticleCategory = (ArticleCategory)rdr["ArticleCategoryId"]; // probléme cast enum
-                        article.Name = (string)rdr["Name"];
-                        article.Price = (double)rdr["Price"];
-                        int dayToDeliver = (int)rdr["DeliveryEstimated"];
-                        article.EstimatedDeliveryDate = DateTime.Now.AddDays(dayToDeliver);
+                        articleDal.ArticleId = (int)rdr["ArticleId"]; // probléme cast enum
+                        articleDal.ArticleCategoryId = (int)rdr["ArticleCategoryId"];
+                        articleDal.ArticleName = (string)rdr["ArticleName"];
+                        articleDal.Price = (double)rdr["Price"];
+                        articleDal.DeliveryEstimated = (int?)rdr["DeliveryEstimated"];   
                     }
-
                 }
+                Article a = articleDal.ToDomain();
+                return a;
+
             }
 
-            return article;
-
-            //int i = 0;
-            //while (i< 3)
-            //{
-            //    Console.WriteLine(i);
-            //    i = i + 1;
-            //}
-
-            //return result;
-            // boucle while kima boucle if w for w forech heya eli tecotroli l'exécution de la progamme 
-            // while ki neda ma3rch bel dhabt nbre d'exécution
         }
 
     }

@@ -18,9 +18,9 @@ namespace PFE.UseCase
         public ArticleUseCase(IPictureRepository pictureRepository
             , IArticleRepository articleRepository
         , IReviewRepository reviewRepository
-            ,IDiscountRepository discountRepository)
-            // pictureRepository c'est un 
-             //paramétre injécté de type interface
+            , IDiscountRepository discountRepository)
+        // pictureRepository c'est un 
+        //paramétre injécté de type interface
         {
             _pictureRepository = pictureRepository;
             _articleRepository = articleRepository;

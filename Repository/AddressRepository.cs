@@ -34,7 +34,6 @@ namespace PFE.Repository
                         addressBilling.Country = (Country)Enum.Parse(typeof(Country), (string)rdr["Country"]);
                         addressBilling.IsDefault = (bool?)rdr["IsDefault"];
                         addressesBilling.Add(addressBilling);
-                    
                     }
                 }
             }

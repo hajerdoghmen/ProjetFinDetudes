@@ -1,4 +1,5 @@
 ﻿using PFE.Domain;
+using PFE.Repository.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,12 +26,13 @@ namespace PFE.Repository
                 {
                     while (rdr.Read())
                     {
-                        Discount discount = new Discount();
+                        var discount = new DiscountDAL();
+                        discount.ArticleId = (int)rdr["ArticleId"];
                         discount.DiscoutId = (int)rdr["DiscoutId"];
                         discount.StartDate = (DateTime)rdr["StartDate"];
                         discount.EndDate = (DateTime)rdr["EndDate"];
                         discount.Percent = (int)rdr["Percent"];
-                        discounts.Add(discount);
+                        discounts.Add(discount.ToDomain()) ;
                     }
                 }
             }

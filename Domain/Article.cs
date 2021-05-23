@@ -12,7 +12,7 @@ namespace PFE.Domain
         public ArticleCategory ArticleCategory { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public DateTime EstimatedDeliveryDate { get; set; }
+        public DateTime? EstimatedDeliveryDate { get; set; }
         public List<Review> Reviews { get; set; }
         public List<ArticleImage> ArticleImages { get; set; }
         public List<Discount> Discounts { get; set; }

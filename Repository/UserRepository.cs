@@ -31,7 +31,6 @@ namespace PFE.Repository
                         user.Sex = (Sex)Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
                         //int i = 5;
                         //double d = 4.6;
-
                         //d = i; // cast implicit (specifique on lui met un generique)user.Sex = (Sex) Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
                         user.UserId = UserId;
                         //i = (int)d;
@@ -46,13 +45,11 @@ namespace PFE.Repository
 
                         //Dictionary<int, string> df = new Dictionary<int, string>();
                         //df.Add(3,"val");
-    
                     }
             }
             return user;
         }
     }
-
     public class Animal { }
     public class Chien : Animal { }
 }

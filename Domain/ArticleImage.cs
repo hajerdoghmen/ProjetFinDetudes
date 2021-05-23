@@ -8,6 +8,7 @@ namespace PFE.Domain
 {
     public class ArticleImage
     {
+        public int ArticleId { get; set; }
         public int ArticleImageId { get; set; }
         public string Url { get; set; }
     }
