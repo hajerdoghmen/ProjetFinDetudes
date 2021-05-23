@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using PFE.Repository.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,7 @@ namespace PFE.Repository
     {
         public List<ArticleImage> GetPictureById(int articleId)
         {
-            List<ArticleImage> pictures = new List<ArticleImage>();
+            var pictures = new List<PictureDAL>();
 
             using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             {
@@ -28,18 +29,24 @@ namespace PFE.Repository
                 {
                     while (rdr.Read())
                     {
-                        ArticleImage picture = new ArticleImage();
-                        picture.ArticleImageId = (int)rdr["PictureId"];
-                        picture.Url = (string)rdr["Picture"];
-
-
+                        var picture = new PictureDAL();
+                        picture.ArticleId = (int)rdr["ArticleId"];
+                        picture.PictureId = (int)rdr["PictureId"];
+                        picture.Picture = (string)rdr["Picture"];
                         pictures.Add(picture);
                     }
                 }
             }
+            //var articleImages = new List<ArticleImage>();
+            //foreach (var picture in pictures)
+            //{
+            //    articleImages.Add ( picture.ToDomain());
+            //}
+            //return articleImages;
+            
+            List<ArticleImage> articleImages =  pictures.Select(picture => picture.ToDomain()).ToList();
 
-            return pictures;
-
+            return articleImages;
 
 
         }

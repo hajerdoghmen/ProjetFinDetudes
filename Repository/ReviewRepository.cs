@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using PFE.QRepository.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +16,7 @@ namespace PFE.Repository
     {
         public List<Review> GetReviewById(int articleId)
         {
-            List<Review> reviews = new List<Review>();
+            var reviews = new List<ReviewDAL>();
 
             using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             {
@@ -29,7 +30,8 @@ namespace PFE.Repository
                 {
                     while (rdr.Read())
                     {
-                        Review review = new Review();
+                        var review = new ReviewDAL();
+                        review.ArticleId = (int)rdr["ArticleId"];
                         review.Score = (int)rdr["Score"];
                         review.ReviewId = (int)rdr["ReviewId"];
                         review.Comments = (string)rdr["Comments"];
@@ -39,7 +41,9 @@ namespace PFE.Repository
                 }
             }
 
-            return reviews;
+            List<Review> articleReview = reviews.Select(review => review.ToDomain()).ToList();
+
+            return articleReview;
 
 
 

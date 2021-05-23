@@ -8,6 +8,7 @@ namespace PFE.Domain
 {
     public class Review
     {
+        public int ArticleId { get; set; }
         public int ReviewId { get; set; }
         public int Score { get; set; }
         public string Comments { get; set; }

@@ -6,6 +6,7 @@ namespace PFE.Domain
 {
     public class Discount
     {
+        public int ArticleId { get; set; }
         public int DiscoutId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
