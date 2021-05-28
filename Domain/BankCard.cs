@@ -6,7 +6,7 @@ namespace PFE.Domain
 {
    public  class BankCard
     {
-        public int BankCaedId { get; set; }
+        public int CreditCardId { get; set; }
         public string CardNumber { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string Name { get; set; }

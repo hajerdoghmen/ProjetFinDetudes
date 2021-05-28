@@ -8,6 +8,7 @@ namespace PFE.Repository.DAL
 {
    public  class AddressDAL
     {
+		public  int AddressId { get; set; }
 		public int Number { get; set; }
 		public string Street { get; set; }
 		public int ZipCode { get; set; }
@@ -17,8 +18,9 @@ namespace PFE.Repository.DAL
 
 		public Address ToDomain ()
 		{
-			var result = new Address
+			return  new Address 
 			{
+				Id = AddressId,
 				Number = Number,
 				Street = Street,
 				ZIPcode = ZipCode,
@@ -26,7 +28,7 @@ namespace PFE.Repository.DAL
 				Country = (Country)Enum.Parse(typeof(Country), Country),
 				IsDefault = IsDefault
 			};
-			return result;
+			
 		}
 		 
 	}

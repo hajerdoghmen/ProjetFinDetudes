@@ -1,5 +1,6 @@
 ﻿
 using PFE.Domain;
+using PFE.Repository.DAL;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,7 @@ namespace PFE.Repository
     {
         public User GetUsersById (int UserId)
         {
-            User user = new User();
-            
+            var user = new UserDAL();
             using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
             {
                 conn.Open();
@@ -28,28 +28,11 @@ namespace PFE.Repository
                         user.FirstName = (string)rdr["FirstName"];
                         user.LastName =(string)rdr["LastName"];
                         user.DateOfBirth = (DateTime)rdr["DateOfBirth"];
-                        user.Sex = (Sex)Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
-                        //int i = 5;
-                        //double d = 4.6;
-                        //d = i; // cast implicit (specifique on lui met un generique)user.Sex = (Sex) Enum.Parse(typeof(Sex), (string)rdr["Sex"]);
+                        user.Sex = (string)rdr["Sex"];
                         user.UserId = UserId;
-                        //i = (int)d;
-
-                        //Animal a = new Animal();
-                        //Chien c = new Chien();
-
-                        //a = c;
-                        //Animal aa = new Chien();
-
-                        //c = (Chien)a;
-
-                        //Dictionary<int, string> df = new Dictionary<int, string>();
-                        //df.Add(3,"val");
                     }
             }
-            return user;
+            return user.ToDomain ();
         }
     }
-    public class Animal { }
-    public class Chien : Animal { }
 }
