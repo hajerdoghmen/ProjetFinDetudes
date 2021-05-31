@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PFE.Config;
 using PFE.Repository;
 using PFE.UseCase;
 using Repository;
@@ -45,6 +48,11 @@ namespace PFE
             services.AddTransient<IOrderUseCase, OrderUseCase>();
 
             services.AddControllers();
+            // hedha étape 3  fel config
+            services.Configure<MyConfig>(Configuration.GetSection("MyConfig"));
+
+            services.AddTransient<IDbConnection>(sp => new SqlConnection(Configuration["MyConfig:ConnectionString"]));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

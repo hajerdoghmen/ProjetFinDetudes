@@ -33,6 +33,10 @@ namespace PFE.UseCase
             //Article article = articleRepository.GetArticleById(articleId);
 
             Article article = _articleRepository.GetArticleById(articleId);
+            //if (article.Price == 0)
+            //{
+            //    throw new Exception("Price cannot be null");
+            //}
 
             //lena mochkol
             //PictureRepository pictureRepository = new PictureRepository();

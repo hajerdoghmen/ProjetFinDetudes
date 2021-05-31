@@ -10,10 +10,15 @@ namespace PFE.Repository
 {
     public class OrderRepository : IOrderRepository // rôle de l'interface 
     {
+        private readonly string connString;
+        public OrderRepository(IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
         public Order GetOrderById(int orderId)
         {
             List<OrderDetailDAL> orderDetails = new List<OrderDetailDAL>();
-            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))// rôle const el sna3tha
+            using (SqlConnection conn = new SqlConnection(connString))// rôle const el sna3tha
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("GetOrderById", conn);

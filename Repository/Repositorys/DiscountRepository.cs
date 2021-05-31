@@ -10,11 +10,16 @@ namespace PFE.Repository
 {
     public class DiscountRepository :IDiscountRepository
     {
+        private readonly string connString;
+        public DiscountRepository(IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
         public List< Discount> GetDiscountById(int articleId)
         {
            List< Discount> discounts = new List<Discount>();
 
-            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
 
