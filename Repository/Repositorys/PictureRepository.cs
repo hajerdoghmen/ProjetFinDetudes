@@ -13,11 +13,16 @@ namespace PFE.Repository
 {
     public class PictureRepository : IPictureRepository
     {
+        private readonly string connString;
+        public PictureRepository(IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
         public List<ArticleImage> GetPictureById(int articleId)
         {
             var pictures = new List<PictureDAL>();
 
-            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
 

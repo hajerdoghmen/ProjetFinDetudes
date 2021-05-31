@@ -20,7 +20,6 @@ namespace PFE.Modeles
             AdressDeFacturation = o.BillingAddress?.ToString();
             CreditCard = o.CreditCard.Mask();
             //CreditCard = Mask(o.CreditCard);
-
         }
         public int Id { get; set; }
         public int UserId { get; set; }

@@ -14,11 +14,16 @@ namespace PFE.Repository
 {
     public class ReviewRepository : IReviewRepository
     {
+        private readonly string connString;
+        public ReviewRepository(IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
         public List<Review> GetReviewById(int articleId)
         {
             var reviews = new List<ReviewDAL>();
 
-            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
 

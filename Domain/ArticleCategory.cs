@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace PFE.Domain
 {
     public enum ArticleCategory
-    {
+    { 
+        Unknown = 0,
         WomenClothes = 1,
         MenClothes = 2,
         KidsClothes = 3,

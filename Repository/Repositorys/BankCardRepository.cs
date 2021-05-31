@@ -13,11 +13,17 @@ namespace PFE.Repository
 {
     public class BankCardRepository : IBankCardRepository
     {
+        private readonly string connString;
+            public BankCardRepository (IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
+
         private const string PS_GetBankCardByUserId = "PS_GetBankCardByUserId";
         public List<BankCard> GetBankCardByUserId (int userId)
         {
            var bankCards = new List<CreditCardDAL>();       
-            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(PS_GetBankCardByUserId, conn);

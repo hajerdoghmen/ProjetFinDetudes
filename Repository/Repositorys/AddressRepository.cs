@@ -13,12 +13,18 @@ using System.Text;
 namespace PFE.Repository
 {
     public class AddressRepository : IAddressRepository
+
     {
+        private readonly string connString;
+        public AddressRepository (IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
         public List <Address>  GetBillingAdressByUserId (int userId)
         {
             var addressesBilling = new List<AddressDAL>();
             
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("PS_GetBillingAdresByUserId", conn);
@@ -47,7 +53,7 @@ namespace PFE.Repository
         {
             var addressesShipping = new List<AddressDAL>();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLExpress;DataBase=PFE;Integrated Security=SSPI"))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("PS_GetShippingAddrsesByUserId", conn);

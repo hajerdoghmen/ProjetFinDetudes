@@ -13,10 +13,15 @@ namespace PFE.Repository
 {
     public class UserRepository :IUserRepository
     {
+        private readonly string connString;
+        public UserRepository(IDbConnection dbConnection)
+        {
+            connString = dbConnection.ConnectionString;
+        }
         public User GetUsersById (int UserId)
         {
             var user = new UserDAL();
-            using (SqlConnection conn = new SqlConnection(SqlConstant.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("PS_GetUserById", conn);

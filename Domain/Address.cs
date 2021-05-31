@@ -15,7 +15,11 @@ namespace PFE.Domain
         public Country Country { get; set; }
         public bool? IsDefault { get; set; } //pour  choisir ue adresse par defaut
         public override string ToString()  // hedhi fct en principe te5ou paramétre de type Adress ama puisque fouma fard classe
-                                       // donc testa3mlha direct men ghir ma7otha fel paramétres  w esta3mlhom direct 
+                                       // donc testa3mlha direct men ghir ma7otha fel paramétres 
+                                       // but mte3ha bech najam n3awd implimantation mta3 fct ToString () 
+                                       //w n3awdhha bel implimentation hedhi  donc madem classe hedhi hérite men class microsoft 
+                                       //eli fih Tostring () donc nzidh ovveride
+                                       // zid houwa 
         {
             return  Number.ToString() + " " + Street + " " + City + " " + ZIPcode.ToString();
         }
