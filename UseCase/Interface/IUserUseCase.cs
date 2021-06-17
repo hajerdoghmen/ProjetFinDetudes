@@ -7,7 +7,7 @@ namespace PFE.UseCase
 {
     public interface IUserUseCase
     {
-        User GetUserById(int userId, bool isMobile = false);
+        User GetUser(int? userId, Guid? guidId, bool isMobile = false);
         //User GetUsersById(int userId);
     }
 }

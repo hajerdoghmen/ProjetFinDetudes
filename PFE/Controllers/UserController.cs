@@ -21,16 +21,26 @@ namespace PFE
         [Route("GetUserById")]
         [HttpGet]
 
-        public UsersModel GetUserById(int userId)
+        public UsersModel GetUserById (int userId)
         {
-            var userModel = new UsersModel(_userUseCase.GetUserById(userId));
+            var userModel = new UsersModel(_userUseCase.GetUser(userId: userId, guidId: null));
             return userModel;
         }
+
+        [Route("GetUserByRef")]
+        [HttpGet]
+
+        public UsersModel GetUserByRef(Guid userRef)
+        {
+            var userModel = new UsersModel(_userUseCase.GetUser(null, userRef));
+            return userModel;
+        }
+
         [Route("GetUserByIdMobile")]
         [HttpGet]
-        public UserMobileModel GetUserByIdVersionMobile(int userId)
+        public UserMobileModel GetUserByIdVersionMobile(int userId, Guid guidId)
         {
-            var userModelVersionMobile = new UserMobileModel(_userUseCase.GetUserById(userId, true));
+            var userModelVersionMobile = new UserMobileModel(_userUseCase.GetUser(userId, guidId, true));
             //GetUserById var userModelVersionMobile = new UserMobileModel(_userUseCase.GetUsersById(userId));
             return userModelVersionMobile;
         }

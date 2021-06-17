@@ -18,6 +18,10 @@ namespace PFE.UseCase
         }
         public Order GetOrderById(int orderId)
         {
+            if (orderId < 1)
+            {
+                throw new Exception("orderId inrouvable");
+            }
             Order order = _orderRepository.GetOrderById(orderId);
            
             return order;

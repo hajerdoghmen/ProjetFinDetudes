@@ -18,23 +18,25 @@ namespace PFE.Repository
         {
             connString = dbConnection.ConnectionString;
         }
-        public User GetUsersById (int UserId)
+        public User GetUser(int? userId,Guid? guidId )
         {
             var user = new UserDAL();
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("PS_GetUserById", conn);
+                SqlCommand cmd = new SqlCommand("PS_GetUserRef", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@UserId", UserId));
+                cmd.Parameters.Add(new SqlParameter ("@UserId",  userId));
+                cmd.Parameters.Add(new SqlParameter("@GuidId", guidId));
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                     while (rdr.Read())
                     {
                         user.FirstName = (string)rdr["FirstName"];
-                        user.LastName =(string)rdr["LastName"];
+                        user.LastName = (string)rdr["LastName"];
                         user.DateOfBirth = (DateTime)rdr["DateOfBirth"];
                         user.Sex = (string)rdr["Sex"];
-                        user.UserId = UserId;
+                        user.UserId = (int)rdr["UserId"];
+                        user.GuidId = (Guid)rdr ["UserReference"];
                     }
             }
             return user.ToDomain ();
