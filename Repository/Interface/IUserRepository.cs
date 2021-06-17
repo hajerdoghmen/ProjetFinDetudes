@@ -7,6 +7,6 @@ namespace Repository
 {
     public interface IUserRepository
     {
-        User GetUsersById(int userId);
+        User GetUser(int? userId, Guid? guidId);
     }
 }

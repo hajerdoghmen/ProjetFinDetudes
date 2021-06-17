@@ -9,6 +9,7 @@ namespace PFE.Repository.DAL
     public class UserDAL
     {
         public int UserId { get; set; }
+        public Guid GuidId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -19,6 +20,7 @@ namespace PFE.Repository.DAL
             return new User
             {
                 UserId = UserId,
+                GuiId =GuidId,
                 FirstName = FirstName,
                 LastName = LastName,
                 DateOfBirth = DateOfBirth,

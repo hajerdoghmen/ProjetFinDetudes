@@ -7,6 +7,7 @@ namespace PFE.Domain
     public class User
     {
         public int UserId { get; set; }
+        public Guid GuiId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public  DateTime DateOfBirth { get; set; }

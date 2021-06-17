@@ -1,4 +1,7 @@
 ﻿
+
+
+
 using PFE.Domain;
 using PFE.Repository.DAL;
 using Repository;
@@ -51,11 +54,11 @@ namespace PFE.Repository
                     //rdr.Read heya ei fasrheli oussama kima dictionnaire
                     {
                         articleDal.ArticleId = (int)rdr["ArticleId"]; // probléme cast enum
-   
+
                         articleDal.ArticleCategoryId = rdr["ArticleCategoryId"] != DBNull.Value ? (int)rdr["ArticleCategoryId"] : 0;
                         articleDal.ArticleName = rdr["ArticleName"] != DBNull.Value ? (string)rdr["ArticleName"] : null;
                         articleDal.Price = rdr["Price"] != DBNull.Value ? (double)rdr["Price"] : 0;
-                        articleDal.DeliveryEstimated = rdr["DeliveryEstimated"] != DBNull.Value ? (int?)rdr["DeliveryEstimated"] : null;   
+                        articleDal.DeliveryEstimated = rdr["DeliveryEstimated"] != DBNull.Value ? (int?)rdr["DeliveryEstimated"] : null;
                     }
                 }
                 Article a = articleDal.ToDomain();
@@ -66,5 +69,4 @@ namespace PFE.Repository
         }
 
     }
-
 }

@@ -32,14 +32,14 @@ namespace PFE.UseCase
         //    return users;
         //}
         
-        public User GetUserById(int userId, bool isMobile)
+        public User GetUser(int? userId, Guid? guidId, bool isMobile)
         {
-            User user = _userRepository.GetUsersById(userId);
+            User user = _userRepository.GetUser(userId , guidId);
             if (!isMobile)
             {
-                user.BillingAdress = _addressRepository.GetBillingAdressByUserId(userId);
-                user.ShippingAdress = _addressRepository.GetShippingAdressByUserId(userId);
-                user.BankCard = _bankCardRepository.GetBankCardByUserId(userId);
+                user.BillingAdress = _addressRepository.GetBillingAdressByUserId(user.UserId);
+                user.ShippingAdress = _addressRepository.GetShippingAdressByUserId(user.UserId);
+                user.BankCard = _bankCardRepository.GetBankCardByUserId(user.UserId);
             }
             
             return user;

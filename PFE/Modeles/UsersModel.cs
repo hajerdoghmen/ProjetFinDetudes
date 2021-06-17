@@ -9,6 +9,7 @@ namespace PFE.Modeles
     public class UsersModel
     {
         public int UserId { get; set; }
+        public Guid GuId { get; set; }
         public string FullName { get; set; }
         public List<string> ShippingAddress { get; set; }
         public List<string> BillingAddress { get; set; }
@@ -18,6 +19,7 @@ namespace PFE.Modeles
         public UsersModel(User user)
         {
             UserId = user.UserId;
+            GuId = user.GuiId;
             FullName = user.FirstName + " " + user.LastName;
             ShippingAddress = new List<string>(); //initialisaton de la liste net3ada men liste null el liste fergha
             foreach (var shippingAddress in user.ShippingAdress)
